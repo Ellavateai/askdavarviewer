@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Ask Davar PDF Viewer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    html, body { height: 100%; margin: 0; }
+    iframe { width: 100%; height: 100%; border: 0; }
+  </style>
+</head>
+<body>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const file = params.get("file");
+  if (!file) {
+    document.body.innerHTML = "<p>Missing ?file=PDF_URL</p>";
+  } else {
+    const hash = window.location.hash || "";
+    const viewer = "https://mozilla.github.io/pdf.js/web/viewer.html?file=" + encodeURIComponent(file) + hash;
+    const iframe = document.createElement("iframe");
+    iframe.src = viewer;
+    document.body.appendChild(iframe);
+  }
+</script>
+</body>
+</html>
